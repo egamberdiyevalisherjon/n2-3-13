@@ -1,0 +1,7 @@
+.maxsus {
+  font-size: 30px;
+}
+
+.todo-completed-checkbox:checked + span.todo-title {
+  text-decoration: line-through;
+}/*# sourceMappingURL=main.css.map */
