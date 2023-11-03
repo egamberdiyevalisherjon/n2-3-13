@@ -1,61 +1,84 @@
-let ul = document.querySelector("ul");
-let form = document.querySelector("form");
+let lastX;
+let lastY;
+const difference = 50;
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let text = e.target[0].value;
-  if (!text) return alert("Matn kirgazish shart");
-  if (text.length < 4) return alert("Matn kamida 4ta belgili boslish shart");
-  let li = document.createElement("li");
-  let btn = document.createElement("button");
-  let editBtn = document.createElement("button");
-  let icon = document.createElement("i");
-  let editIcon = document.createElement("i");
-  let checkbox = document.createElement("input");
-  let span = document.createElement("span");
-  span.classList.add("todo-title");
-  checkbox.setAttribute("type", "checkbox");
-  checkbox.classList.add("todo-completed-checkbox");
-  icon.classList.add("fa-solid", "fa-trash");
-  editIcon.classList.add("fa-solid", "fa-pen");
-  btn.classList.add("btn", "btn-danger");
-  editBtn.classList.add("btn", "btn-warning");
-  btn.append(icon);
-  editBtn.append(editIcon);
-  span.innerText = text;
-  li.append(checkbox);
-  li.append(span);
-  li.classList.add("d-flex", "justify-content-between", "align-items-center");
-  li.append(editBtn);
-  li.append(btn);
-  ul.append(li);
+document.addEventListener("mousemove", (e) => {
+  let x = e.clientX;
+  let y = e.clientY;
+  if (lastX && lastY)
+    if (Math.abs(x - lastX) < difference || Math.abs(y - lastY) < difference)
+      return;
 
-  btn.addEventListener("click", (e) => {
-    if (confirm("Ishonchin komilmi?")) {
-      let element = e.target;
-      while (element.tagName !== "BUTTON") {
-        element = element.parentElement;
-      }
-      element.parentElement.remove();
-    }
-  });
-
-  editBtn.addEventListener("click", (e) => {
-    let currentButton = e.target;
-    while (currentButton.tagName !== "BUTTON")
-      currentButton = currentButton.parentElement;
-
-    let title = currentButton.previousElementSibling;
-    title.setAttribute("contenteditable", true);
-    title.focus();
-
-    title.addEventListener("blur", (e) => {
-      e.target.setAttribute("contenteditable", false);
-    });
-  });
-
-  e.target.reset();
+  let color = "#" + Math.random().toString(16).slice(2, 8);
+  let div = document.createElement("div");
+  div.classList.add("effect");
+  div.style.backgroundColor = color;
+  div.style.backgroundColor = color;
+  div.style.top = y + "px";
+  div.style.left = x + "px";
+  document.body.append(div);
+  lastX = x;
+  lastY = y;
 });
+
+// let ul = document.querySelector("ul");
+// let form = document.querySelector("form");
+
+// form.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   let text = e.target[0].value;
+//   if (!text) return alert("Matn kirgazish shart");
+//   if (text.length < 4) return alert("Matn kamida 4ta belgili boslish shart");
+//   let li = document.createElement("li");
+//   let btn = document.createElement("button");
+//   let editBtn = document.createElement("button");
+//   let icon = document.createElement("i");
+//   let editIcon = document.createElement("i");
+//   let checkbox = document.createElement("input");
+//   let span = document.createElement("span");
+//   span.classList.add("todo-title");
+//   checkbox.setAttribute("type", "checkbox");
+//   checkbox.classList.add("todo-completed-checkbox");
+//   icon.classList.add("fa-solid", "fa-trash");
+//   editIcon.classList.add("fa-solid", "fa-pen");
+//   btn.classList.add("btn", "btn-danger");
+//   editBtn.classList.add("btn", "btn-warning");
+//   btn.append(icon);
+//   editBtn.append(editIcon);
+//   span.innerText = text;
+//   li.append(checkbox);
+//   li.append(span);
+//   li.classList.add("d-flex", "justify-content-between", "align-items-center");
+//   li.append(editBtn);
+//   li.append(btn);
+//   ul.append(li);
+
+//   btn.addEventListener("click", (e) => {
+//     if (confirm("Ishonchin komilmi?")) {
+//       let element = e.target;
+//       while (element.tagName !== "BUTTON") {
+//         element = element.parentElement;
+//       }
+//       element.parentElement.remove();
+//     }
+//   });
+
+//   editBtn.addEventListener("click", (e) => {
+//     let currentButton = e.target;
+//     while (currentButton.tagName !== "BUTTON")
+//       currentButton = currentButton.parentElement;
+
+//     let title = currentButton.previousElementSibling;
+//     title.setAttribute("contenteditable", true);
+//     title.focus();
+
+//     title.addEventListener("blur", (e) => {
+//       e.target.setAttribute("contenteditable", false);
+//     });
+//   });
+
+//   e.target.reset();
+// });
 
 // let li = document.createElement("li");
 // let btn = document.createElement("button");

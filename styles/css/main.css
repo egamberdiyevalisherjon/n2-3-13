@@ -4,4 +4,27 @@
 
 .todo-completed-checkbox:checked + span.todo-title {
   text-decoration: line-through;
+}
+
+.effect {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  animation: bubble 1s ease-in-out 0s;
+  transform: translate(-50%, -50%) scale(0);
+  position: fixed;
+}
+
+@keyframes bubble {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+    visibility: hidden;
+  }
+  50% {
+    opacity: 1;
+  }
+  from {
+    transform: translate(-50%, -50%) scale(0);
+  }
 }/*# sourceMappingURL=main.css.map */
